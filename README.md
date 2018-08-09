@@ -15,7 +15,7 @@ Deploy from OSEv3.
 
 ## green app deploy
 
-    oc new-app https://github.com/mbach04/bluegreen#green --name=green
+    oc new-app https://github.com/mbach04/bluegreen#green --image-stream=s2i-adx-nodejs --name=green
 
 ## switch services to green
     oc patch route/bluegreen -p '{"spec":{"to":{"name":"green"}}}'
