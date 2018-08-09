@@ -6,7 +6,7 @@ Deploy from OSEv3.
 
 ## new project and blue app from master
 
-    oc new-project bg --display-name="Blue Green" --description='Blue Green Deployments'
+    oc new-project bg --display-name="Blue Green" --image-stream=s2i-adx-nodejs --description='Blue Green Deployments'
     oc new-app https://github.com/mbach04/bluegreen#master --name=blue
 
 ## expose bluegreen service (using blue)
