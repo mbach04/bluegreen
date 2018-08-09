@@ -3,8 +3,14 @@
  * Created by mike on 15/08/15.
  */
 
-var http = require("http");
+var https = require("https");
 var url = require("url");
+var fs = require('fs');
+var privateKey  = fs.readFileSync('/secret/cert/server.key', 'utf8');
+var certificate = fs.readFileSync('/secret/cert/server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+
 
 function start(route, handle) {
 
@@ -14,7 +20,7 @@ function start(route, handle) {
         route(handle, pathname, response, request);
     }
 
-    http.createServer(onRequest).listen(8080);
+    https.createServer(credentials, onRequest).listen(8443, '0.0.0.0');
 }
 
 exports.start = start;
