@@ -7,7 +7,7 @@ Deploy from OSEv3.
 ## new project and blue app from master
 
     oc new-project bg --display-name="Blue Green" --description='Blue Green Deployments'
-    oc new-app https://github.com/devops-with-openshift/bluegreen#master --name=blue
+    oc new-app https://github.com/mbach04/bluegreen#master --name=blue
 
 ## expose bluegreen service (using blue)
 
@@ -15,12 +15,10 @@ Deploy from OSEv3.
 
 ## green app deploy
 
-    oc new-app https://github.com/devops-with-openshift/bluegreen#green --name=green
+    oc new-app https://github.com/mbach04/bluegreen#green --name=green
 
 ## switch services to green
-
-    oc get route/bluegreen -o yaml | sed -e 's/name: blue$/name: green/' | oc replace -f -
+    oc patch route/bluegreen -p '{"spec":{"to":{"name":"green"}}}'
 
 ## and back again
-
-    oc get route/bluegreen -o yaml | sed -e 's/name: green$/name: blue/' | oc replace -f -
+    oc patch route/bluegreen -p '{"spec":{"to":{"name":"blue"}}}'
