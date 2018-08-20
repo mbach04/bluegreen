@@ -7,7 +7,7 @@ Deploy from OSEv3.
 ## new project and blue app from master
 
     oc new-project bg --display-name="Blue Green" --description='Blue Green Deployments'
-    oc new-app https://gitlab.dicelab.net/matthew.j.bach/bluegreen-demo#master --image-stream=s2i-adx-nodejs --name=blue
+    oc new-app https://github.com/mbach04/bluegreen-demo#master --image-stream=s2i-adx-nodejs --name=blue
 
 ## expose bluegreen service (using blue)
 
@@ -15,7 +15,7 @@ Deploy from OSEv3.
 
 ## green app deploy
 
-    oc new-app https://gitlab.dicelab.net/matthew.j.bach/bluegreen-demo#green --image-stream=s2i-adx-nodejs --name=green
+    oc new-app https://github.com/mbach04/bluegreen-demo#green --image-stream=s2i-adx-nodejs --name=green
 
 ## switch services to green
     oc patch route/bluegreen -p '{"spec":{"to":{"name":"green"}}}'
